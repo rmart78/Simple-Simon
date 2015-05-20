@@ -132,6 +132,11 @@ html {
     border: 1px solid black;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.3;
+}
+
+.opacity {
+    opacity: 1;
 }
 
 #red {
@@ -150,3 +155,10 @@ html {
     background-color: yellow;
 }
 
+#instructions {
+    text-align: center;
+}
+
+#button_container {
+    text-align: center;
+}

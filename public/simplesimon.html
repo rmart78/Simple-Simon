@@ -30,5 +30,139 @@
 			</div>
 		</div>
 	</div>
+	<h2 id="instructions">Click Start to Begin</h2>
+	<div id="button_container">
+		<button id="start">Start</button>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="/js/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+    "use strict";
+
+	$('document').ready(function() {
+
+		  function colorGenerator() {
+    	var colors = ['red','purple','green','yellow'];
+    	var randomColor = colors[Math.floor(Math.random() * colors.length)];
+    	return randomColor;
+    }
+
+    var inputArray = [];
+
+    var userArray = [];
+
+    function cycle() {
+    	var colorVar = colorGenerator();
+		  		if (colorVar == 'red') {
+		  			$('#red')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			inputArray.push('red');	
+		  		}
+		  		if (colorVar == 'purple') {
+		  			$('#purple')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			inputArray.push('purple');
+		  		}
+		  		if (colorVar == 'green') {
+		  			$('#green')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			inputArray.push('green');
+		  		}
+		  		if (colorVar == 'yellow') {
+		  			$('#yellow')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			inputArray.push('yellow');
+		  		}
+
+    }
+
+    function compareArrays() {
+    	var joinInputArray = inputArray.join("");
+    	var joinUserArray = userArray.join("");
+    	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray == joinUserArray)) {
+    		inputArray.length = 0;
+    		userArray.length = 0;
+    		roundInterval();
+    		console.log('good job');
+    	} 
+    	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray != joinUserArray)) {
+    		inputArray.length = 0;
+    		userArray.length = 0;
+    }
+    
+}
+
+    			function colorInterval() {
+    			var counter = 0;
+            var loop = setInterval(function(){
+            	counter++;
+                cycle();
+                console.log(inputArray);
+                if (counter == 4) {
+                	clearInterval(loop);
+                }
+            }, 400);
+        }
+
+        var round = 0;
+
+        		function roundInterval() {
+        			var roundAdd = round+1;
+          $('#button_container').html('Round: ' + roundAdd);
+        }
+
+
+		     $('#start').click(function(){
+		     	colorInterval();
+		     	roundInterval();
+        });
+
+		     $('#red').click(function(){
+		     	$('#red')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		     	userArray.push('red');
+		     	
+		  			compareArrays();
+        });
+
+		     $('#purple').click(function(){
+		     	$('#purple')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		     	userArray.push('purple');
+		     	
+		  			compareArrays();
+        });
+
+		     $('#green').click(function(){
+		     	$('#green')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		     	userArray.push('green');
+		     	
+		  			compareArrays();
+        });
+
+		     $('#yellow').click(function(){
+		     	$('#yellow')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		     	userArray.push('yellow');
+		     	
+		  			compareArrays();
+        });
+
+
+	});
+
+	</script>
+
 </body>
 </html>
