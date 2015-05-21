@@ -82,21 +82,38 @@
 
     }
 
+  
+
     function compareArrays() {
     	var joinInputArray = inputArray.join("");
     	var joinUserArray = userArray.join("");
     	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray == joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
-    		roundInterval();
-    		console.log('good job');
+    		var add = +(document.getElementById('round').innerHTML) + 1;
+    		document.getElementById('round').innerHTML = add;
+    		loopDelay(); 		
     	} 
     	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray != joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
+    		alert('Wrong! Game Over');
     }
     
 }
+
+	function loopDelay () {
+		$('#instructions').html('Watch the Sequence');
+			var counter = 0;
+            var loopDelay1 = setInterval(function(){
+            	counter++;
+ 				colorInterval();
+                if (counter == 1) {
+                	clearInterval(loopDelay1);
+                }
+            }, 1000);
+
+	}
 
     			function colorInterval() {
     			var counter = 0;
@@ -105,22 +122,18 @@
                 cycle();
                 console.log(inputArray);
                 if (counter == 4) {
+                	$('#instructions').html('Repeat the Sequence You Just Saw');
                 	clearInterval(loop);
                 }
-            }, 400);
+            }, 500);
+            
         }
-
-        var round = 0;
-
-        		function roundInterval() {
-        			var roundAdd = round+1;
-          $('#button_container').html('Round: ' + roundAdd);
-        }
+      
 
 
 		     $('#start').click(function(){
-		     	colorInterval();
-		     	roundInterval();
+		     	loopDelay();
+		     	$('#start').html('Round: <span id="round">1</span>');
         });
 
 		     $('#red').click(function(){
