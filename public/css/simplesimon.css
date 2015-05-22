@@ -7,6 +7,7 @@ html {
 }
 
 .container {
+    position: relative;
     margin: 0 auto;
     width: 100%;
     max-width: 400px;
@@ -124,7 +125,8 @@ html {
 
 #heading {
     text-align: center;
-
+    font-family: 'Indie Flower', cursive;
+    font-size: 40px;
 }
 
 .button {
@@ -189,15 +191,18 @@ html {
 }
 
 #button_container {
+    border-radius: 50%;
+    border: hidden;
     position: absolute;
     text-align: center;
-    left: 525px;
-    top: 230px;
+    top: 37%;
+    left: 37%;
 }
 
 #start {
     border: solid white 5px;
     background-color: black;
+    outline: none;
     color: white;
     height: 100px;
     width: 100px;
