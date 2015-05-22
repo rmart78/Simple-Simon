@@ -213,6 +213,10 @@ html {
     display: none;
 }
 
+.invisible1 {
+    display: none;
+}
+
 #game_over {
     text-align: center;
     font-size: 100px;

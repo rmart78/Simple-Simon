@@ -40,7 +40,7 @@
 	<h2 id="instructions" class="starter">Click Start to Begin</h2>
 	<h1 id="game_over" class="invisible"><span id="g">G</span><span id="a">A</span><span id="m">M</span><span id="e">E </span><span id="o">O</span><span id="v">V</span><span id="ee">E</span><span id="r">R</span></h1>
 	<div id="start_over_container">
-	<button id="start_over" class="invisible">Start Over</button>
+	<button id="start_over" class="invisible1">Start Over</button>
 	</div>
 	<!-- <div id="button_container">
 		<button id="start">Start</button>
@@ -180,6 +180,7 @@
 		     $('#start').click(function(){
 		     	loopDelay();
 		     	$('#start').html('Round: <span id="round">1</span>');
+		     	$('.invisible1').toggleClass('invisible1');
         });
 
 		     $('#red').click(function(){
