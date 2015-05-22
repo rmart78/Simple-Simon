@@ -10,6 +10,7 @@ html {
     margin: 0 auto;
     width: 100%;
     max-width: 400px;
+    overflow: hidden;
 }
 
 /*.row {
@@ -24,7 +25,7 @@ html {
 
 .column {
     float: left;
-    padding: 10px;
+    /*padding: 10px;*/
     height: 200px;
 }
 
@@ -143,16 +144,44 @@ html {
     background-color: red;
 }
 
+#red_column {
+     padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
 #purple {
     background-color: purple;
+}
+
+#purple_column {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 #green {
     background-color: green;
 }
 
+#green_column {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+}
+
 #yellow {
     background-color: yellow;
+}
+
+#yellow_column {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-left: 10px;
+    padding-bottom: 0px;
 }
 
 #instructions {
@@ -160,5 +189,17 @@ html {
 }
 
 #button_container {
+    position: absolute;
     text-align: center;
+    left: 525px;
+    top: 230px;
+}
+
+#start {
+    border: solid white 5px;
+    background-color: black;
+    color: white;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
 }

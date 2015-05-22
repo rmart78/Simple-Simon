@@ -6,26 +6,30 @@
 	<link rel="stylesheet" href="/css/simplesimon.css">
 	<style type="text/css">
 		.container {
+			border-radius: 50%;
 			border: 2px solid black;
 		}
 	</style>
 </head>
 <body>
 	<h1 id="heading">Simple Simon</h1>
-	<div class="container">
+	<div id="game_container" class="container">
 		<div class="row">
-			<div class="column one-half">
+			<div id="red_column" class="column one-half">
 				<div id="red" class="button"></div>
 			</div>
-			<div class="column one-half">
+			<div id="purple_column" class="column one-half">
 				<div id="purple" class="button"></div>
 			</div>
 		</div>
+		<!-- <div id="button_container">
+		<button id="start">Start</button>
+	</div> -->
 		<div class="row">
-			<div class="column one-half">
+			<div id="green_column" class="column one-half">
 				<div id="green" class="button"></div>
 			</div>
-			<div class="column one-half">
+			<div id="yellow_column" class="column one-half">
 				<div id="yellow" class="button"></div>
 			</div>
 		</div>
@@ -43,16 +47,20 @@
 
 	$('document').ready(function() {
 
+			// this pulls a random color from the selection below
 		  function colorGenerator() {
     	var colors = ['red','purple','green','yellow'];
     	var randomColor = colors[Math.floor(Math.random() * colors.length)];
     	return randomColor;
     }
 
+    // this is the array where the four random numbers are temporarily stored
     var inputArray = [];
 
+    // this is the array where the four user entered numbers are temporarily stored
     var userArray = [];
 
+    // this function 
     function cycle() {
     	var colorVar = colorGenerator();
 		  		if (colorVar == 'red') {
