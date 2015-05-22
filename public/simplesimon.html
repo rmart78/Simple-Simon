@@ -14,7 +14,7 @@
 	</style>
 </head>
 <body>
-	<h1 id="heading">Simple Simon</h1>
+	<h1 id="heading" class="starter">Simple Simon</h1>
 	<div id="game_container" class="container">
 		<div class="row">
 			<div id="red_column" class="column one-half">
@@ -36,7 +36,12 @@
 		<button id="start">Start</button>
 	</div>
 	</div>
-	<h2 id="instructions">Click Start to Begin</h2>
+	<!-- <button id="test_button">Test</button> -->
+	<h2 id="instructions" class="starter">Click Start to Begin</h2>
+	<h1 id="game_over" class="invisible"><span id="g">G</span><span id="a">A</span><span id="m">M</span><span id="e">E </span><span id="o">O</span><span id="v">V</span><span id="ee">E</span><span id="r">R</span></h1>
+	<div id="start_over_container">
+	<button id="start_over" class="invisible">Start Over</button>
+	</div>
 	<!-- <div id="button_container">
 		<button id="start">Start</button>
 	</div> -->
@@ -92,6 +97,26 @@
 
     }
 
+        function gameOverCycle() {
+    	var gameOverColorVar = colorGenerator();
+		$('#g').css('color',gameOverColorVar);
+		var gameOverColorVar2 = colorGenerator();
+		$('#a').css('color',gameOverColorVar2);
+		var gameOverColorVar3 = colorGenerator();
+		$('#m').css('color',gameOverColorVar3);
+		var gameOverColorVar4 = colorGenerator();
+		$('#e').css('color',gameOverColorVar4);
+		var gameOverColorVar5 = colorGenerator();
+		$('#o').css('color',gameOverColorVar5);
+		var gameOverColorVar6 = colorGenerator();
+		$('#v').css('color',gameOverColorVar6);
+		var gameOverColorVar7 = colorGenerator();
+		$('#ee').css('color',gameOverColorVar7);
+		var gameOverColorVar8 = colorGenerator();
+		$('#r').css('color',gameOverColorVar8);
+		console.log(gameOverColorVar);
+    }
+
   
 
     function compareArrays() {
@@ -107,7 +132,10 @@
     	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray != joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
-    		alert('Wrong! Game Over');
+    		$('#game_container').effect('blind', 500);
+                $('.invisible').toggleClass('invisible')
+                $('.starter').toggleClass('invisible');
+                gameOverColorInterval();
     }
     
 }
@@ -130,7 +158,6 @@
             var loop = setInterval(function(){
             	counter++;
                 cycle();
-                console.log(inputArray);
                 if (counter == 4) {
                 	$('#instructions').html('Repeat the Sequence You Just Saw');
                 	clearInterval(loop);
@@ -138,6 +165,15 @@
             }, 500);
             
         }
+
+        			function gameOverColorInterval() {
+            setInterval(function(){
+            	gameOverCycle();
+            }, 150);
+            
+        }
+
+     
       
 
 
@@ -181,6 +217,20 @@
 		     	
 		  			compareArrays();
         });
+
+// 		      $('#test_button').click(function() {
+
+// $('#game_container').effect('blind', 500);
+//                 $('.invisible').toggleClass('invisible')
+//                 $('.starter').toggleClass('invisible');
+
+//             }); 
+
+
+	  $('#start_over').click(function(){
+		     	location.reload(true);
+        });
+			
 
 
 	});

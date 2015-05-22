@@ -208,3 +208,17 @@ html {
     width: 100px;
     border-radius: 50%;
 }
+
+.invisible {
+    display: none;
+}
+
+#game_over {
+    text-align: center;
+    font-size: 100px;
+    margin-top: 200px;
+}
+
+#start_over_container {
+    text-align: center;
+}
