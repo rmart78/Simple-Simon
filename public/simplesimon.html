@@ -12,6 +12,7 @@
 			border-style: double;
 		}
 	</style>
+	<audio id="id1" src="/beep5.mp3"></audio>
 </head>
 <body>
 	<h1 id="heading" class="starter">Simple Simon</h1>
@@ -61,10 +62,10 @@
     	return randomColor;
     }
 
-    // this is the array where the four random numbers are temporarily stored
+    // this is the array where the four random colors are temporarily stored
     var inputArray = [];
 
-    // this is the array where the four user entered numbers are temporarily stored
+    // this is the array where the four user entered colors are temporarily stored
     var userArray = [];
 
     // this function 
@@ -122,14 +123,15 @@
     function compareArrays() {
     	var joinInputArray = inputArray.join("");
     	var joinUserArray = userArray.join("");
-    	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray == joinUserArray)) {
+    	if ((inputArray.length == loopCounter && userArray.length == loopCounter) && (joinInputArray == joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
     		var add = +(document.getElementById('round').innerHTML) + 1;
     		document.getElementById('round').innerHTML = add;
-    		loopDelay(); 		
+    		loopCounter = +(loopCounter) + 1;
+    		loopDelay();		
     	} 
-    	if ((inputArray.length == 4 && userArray.length == 4) && (joinInputArray != joinUserArray)) {
+    	if ((inputArray.length == loopCounter && userArray.length == loopCounter) && (joinInputArray != joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
     		$('#game_container').effect('blind', 500);
@@ -153,16 +155,20 @@
 
 	}
 
+	var loopCounter = 1;
+
     			function colorInterval() {
     			var counter = 0;
             var loop = setInterval(function(){
             	counter++;
                 cycle();
-                if (counter == 4) {
+                document.getElementById("id1").play();
+                if (counter == loopCounter) {
                 	$('#instructions').html('Repeat the Sequence You Just Saw');
+                	console.log(inputArray);
                 	clearInterval(loop);
                 }
-            }, 500);
+            }, 1000);
             
         }
 
@@ -188,7 +194,7 @@
 		     	.animate({ opacity: "1"}, 100)
 		  			.animate({ opacity: ".3"}, 100);
 		     	userArray.push('red');
-		     	
+		     	document.getElementById("id1").play();
 		  			compareArrays();
         });
 
@@ -197,7 +203,7 @@
 		     	.animate({ opacity: "1"}, 100)
 		  			.animate({ opacity: ".3"}, 100);
 		     	userArray.push('purple');
-		     	
+		     	document.getElementById("id1").play();
 		  			compareArrays();
         });
 
@@ -206,7 +212,7 @@
 		     	.animate({ opacity: "1"}, 100)
 		  			.animate({ opacity: ".3"}, 100);
 		     	userArray.push('green');
-		     	
+		     	document.getElementById("id1").play();
 		  			compareArrays();
         });
 
@@ -215,7 +221,7 @@
 		     	.animate({ opacity: "1"}, 100)
 		  			.animate({ opacity: ".3"}, 100);
 		     	userArray.push('yellow');
-		     	
+		     	document.getElementById("id1").play();
 		  			compareArrays();
         });
 
