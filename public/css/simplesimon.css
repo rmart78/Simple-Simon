@@ -223,6 +223,6 @@ html {
     margin-top: 200px;
 }
 
-#start_over_container {
+#start_over_container, #finalRoundDisplay {
     text-align: center;
 }
