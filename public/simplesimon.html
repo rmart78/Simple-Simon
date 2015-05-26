@@ -34,12 +34,12 @@
 			</div>
 		</div>
 		<div id="button_container">
-		<button id="start">Start</button>
+		<button id="start">SIMON</button>
 	</div>
 	</div>
 	<!-- <button id="test_button">Test</button> -->
-	<h2 id="instructions" class="starter">Click Start to Begin</h2>
-	<h1 id="game_over" class="invisible"><span id="g">G</span><span id="a">A</span><span id="m">M</span><span id="e">E </span><span id="o">O</span><span id="v">V</span><span id="ee">E</span><span id="r">R</span></h1>
+	<h2 id="instructions" class="starter">Click "SIMON" to Begin</h2>
+	<h1 id="game_over" class="invisible"><span id="g" class="letter">G</span><span id="a" class="letter">A</span><span id="m" class="letter">M</span><span id="e" class="letter">E </span><span id="o" class="letter">O</span><span id="v" class="letter">V</span><span id="ee" class="letter">E</span><span id="r" class="letter">R</span></h1>
 	<h3 id="finalRoundDisplay" class="invisible">You Made It To Round <span id="finalRound"></span></h3>
 	<div id="start_over_container">
 	<button id="start_over" class="invisible1">Start Over</button>
@@ -100,23 +100,9 @@
     }
 
         function gameOverCycle() {
-    	var gameOverColorVar = colorGenerator();
-		$('#g').css('color',gameOverColorVar);
-		var gameOverColorVar2 = colorGenerator();
-		$('#a').css('color',gameOverColorVar2);
-		var gameOverColorVar3 = colorGenerator();
-		$('#m').css('color',gameOverColorVar3);
-		var gameOverColorVar4 = colorGenerator();
-		$('#e').css('color',gameOverColorVar4);
-		var gameOverColorVar5 = colorGenerator();
-		$('#o').css('color',gameOverColorVar5);
-		var gameOverColorVar6 = colorGenerator();
-		$('#v').css('color',gameOverColorVar6);
-		var gameOverColorVar7 = colorGenerator();
-		$('#ee').css('color',gameOverColorVar7);
-		var gameOverColorVar8 = colorGenerator();
-		$('#r').css('color',gameOverColorVar8);
-		console.log(gameOverColorVar);
+        	$('.letter').each(function() {
+        		$(this).css('color', colorGenerator());
+        	});
     }
 
   
@@ -176,7 +162,7 @@
         			function gameOverColorInterval() {
             setInterval(function(){
             	gameOverCycle();
-            	document.getElementById('finalRound').innerHTML = document.getElementById('round').innerHTML;
+            	$('#finalRound').html($('#round').html());
             }, 150);
             
         }

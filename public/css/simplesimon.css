@@ -12,6 +12,7 @@ html {
     width: 100%;
     max-width: 400px;
     overflow: hidden;
+    background-color: black;
 }
 
 /*.row {
@@ -207,6 +208,7 @@ html {
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    font-size: 20px;
 }
 
 .invisible {
