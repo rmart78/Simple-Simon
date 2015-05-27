@@ -106,21 +106,37 @@
     }
 
   
+  var arrayPosition = 0;
 
     function compareArrays() {
     	var joinInputArray = inputArray.join("");
     	var joinUserArray = userArray.join("");
+    	if (inputArray[arrayPosition] != userArray[arrayPosition]) {
+    		inputArray.length = 0;
+    		userArray.length = 0;
+    		arrayPosition = 0;
+    		$('#game_container').effect('blind', 500);
+                $('.invisible').toggleClass('invisible')
+                $('.starter').toggleClass('invisible');
+                gameOverColorInterval();
+    	}
+    	if (inputArray[arrayPosition] == userArray[arrayPosition]) {
+    		arrayPosition++;
+    	}
     	if ((inputArray.length == loopCounter && userArray.length == loopCounter) && (joinInputArray == joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
+    		arrayPosition = 0;
     		var add = +(document.getElementById('round').innerHTML) + 1;
     		document.getElementById('round').innerHTML = add;
     		loopCounter = +(loopCounter) + 1;
-    		loopDelay();		
+    		loopDelay();
+    		console.log('first');		
     	} 
     	if ((inputArray.length == loopCounter && userArray.length == loopCounter) && (joinInputArray != joinUserArray)) {
     		inputArray.length = 0;
     		userArray.length = 0;
+    		arrayPosition = 0;
     		$('#game_container').effect('blind', 500);
                 $('.invisible').toggleClass('invisible')
                 $('.starter').toggleClass('invisible');
