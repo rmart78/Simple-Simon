@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Simon</title>
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/simplesimonIncremental.css">
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		.container {
+			border-radius: 50%;
+			border-width: 5px;
+			border-style: double;
+		}
+	</style>
+	<audio id="id1" src="/beep5.mp3"></audio>
+</head>
+<body>
+	<h1 id="heading" class="starter">Simple Simon</h1>
+	<div id="game_container" class="container">
+		<div class="row">
+			<div id="red_column" class="column one-half">
+				<div id="red" class="button"></div>
+			</div>
+			<div id="purple_column" class="column one-half">
+				<div id="purple" class="button"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="green_column" class="column one-half">
+				<div id="green" class="button"></div>
+			</div>
+			<div id="yellow_column" class="column one-half">
+				<div id="yellow" class="button"></div>
+			</div>
+		</div>
+		<div id="button_container">
+		<button id="start">SIMON</button>
+	</div>
+	</div>
+	<!-- <button id="test_button">Test</button> -->
+	<h2 id="instructions" class="starter">Click "SIMON" to Begin</h2>
+	<h1 id="game_over" class="invisible"><span id="g" class="letter">G</span><span id="a" class="letter">A</span><span id="m" class="letter">M</span><span id="e" class="letter">E </span><span id="o" class="letter">O</span><span id="v" class="letter">V</span><span id="ee" class="letter">E</span><span id="r" class="letter">R</span></h1>
+	<h3 id="finalRoundDisplay" class="invisible">You Made It To Round <span id="finalRound"></span></h3>
+	<div id="start_over_container">
+	<button id="start_over" class="invisible1">Start Over</button>
+	</div>
+	<!-- <div id="button_container">
+		<button id="start">Start</button>
+	</div> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="/js/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+    "use strict";
+
+
+	$('document').ready(function() {
+
+		  function colorGenerator() {
+    	var colors = ['red','purple','green','yellow'];
+    	var randomColor = colors[Math.floor(Math.random() * colors.length)];
+    	return randomColor;
+    }
+
+    var test = 1;
+
+    var inputArray = [];
+
+    var userArray = [];
+
+    function preCycle () {
+    	var counter1 = 0;
+    	    	var preCycleLoop = setInterval(function() {
+ 		counter1++;
+ 		cycleArray();
+ 		if (counter1 == 1) {
+ 			clearInterval(preCycleLoop);
+    	    		$('#instructions').html('Watch the Sequence');
+ 		}
+
+    }, 1000);
+    }
+
+    function cycleArray () {
+    	var counter = 0;
+    	var looper = setInterval(function() {
+ 			if (inputArray[counter] == 'red') {
+		  			$('#red')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			document.getElementById("id1").play();
+		  		}
+		  		if (inputArray[counter] == 'purple') {
+		  			$('#purple')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			document.getElementById("id1").play();
+		  		}
+		  		if (inputArray[counter] == 'green') {
+		  			$('#green')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			document.getElementById("id1").play();
+		  		}
+		  		if (inputArray[counter] == 'yellow') {
+		  			$('#yellow')
+		  			.animate({ opacity: "1"}, 200)
+		  			.animate({ opacity: ".3"}, 200);
+		  			document.getElementById("id1").play();
+		  		}
+		  		if (counter == inputArray.length) { clearInterval(looper);
+		  			console.log('aborted');
+    	$('#instructions').html('Repeat the Sequence You Just Saw');
+		  				counter = 0;
+		  		}
+ 		counter++;
+    }, 1000);
+    }
+
+
+
+
+       function inputColorPush () {
+       	inputArray.push(colorGenerator());
+		  		preCycle();
+
+    }
+
+var roundCounter = 1;
+
+    	var inputPosition = 0;
+
+function compareArrays() {
+    	var joinInputArray = inputArray.join("");
+    	var joinUserArray = userArray.join("");
+    	if (inputArray[inputPosition] != userArray[inputPosition])	{
+    			inputArray.length = 0;
+    			userArray.length = 0;
+    			$('#game_container').effect('blind', 500);
+                $('.invisible').toggleClass('invisible')
+                $('.starter').toggleClass('invisible');
+                gameOverColorInterval();
+    	}
+		if (inputArray[inputPosition] == userArray[inputPosition])	{
+			// inputPosition = +(inputPosition) + 1;
+			inputPosition++;
+    	}
+    	if ((inputArray.length == userArray.length) && (joinInputArray == joinUserArray)) {
+    		userArray.length = 0;
+    		var add = +(document.getElementById('round').innerHTML) + 1;
+    		document.getElementById('round').innerHTML = add;
+    		roundCounter = +(roundCounter) + 1;
+    		inputPosition = 0;
+    		inputColorPush();		
+    	} 
+    
+	}
+
+	 			function gameOverColorInterval() {
+            setInterval(function(){
+            	gameOverCycle();
+            	$('#finalRound').html($('#round').html());
+            }, 150);
+            
+        }
+
+          function gameOverCycle() {
+        	$('.letter').each(function() {
+        		$(this).css('color', colorGenerator());
+        	});
+    }
+
+
+		     $('#start').click(function(){
+		     	inputColorPush();
+		     	$('#start').html('Round: <span id="round">1</span>');
+		     	$('.invisible1').toggleClass('invisible1');
+        });
+
+		       $('#red').click(function(){
+		     	$('#red')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		  			document.getElementById("id1").play();
+		  			userArray.push('red');
+		  			compareArrays();
+        });
+
+		     $('#purple').click(function(){
+		     	$('#purple')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		  			document.getElementById("id1").play();
+		  			userArray.push('purple');
+		  			compareArrays();
+        });
+
+		     $('#green').click(function(){
+		     	$('#green')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		  			document.getElementById("id1").play();
+		  			userArray.push('green');
+		  			compareArrays();
+        });
+
+		     $('#yellow').click(function(){
+		     	$('#yellow')
+		     	.animate({ opacity: "1"}, 100)
+		  			.animate({ opacity: ".3"}, 100);
+		  			document.getElementById("id1").play();
+		  			userArray.push('yellow');
+		  			compareArrays();
+        });
+
+		     });
+
+	</script>
+
+</body>
+</html>
