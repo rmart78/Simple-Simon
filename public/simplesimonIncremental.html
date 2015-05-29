@@ -54,43 +54,45 @@
     <script type="text/javascript">
     "use strict";
 
-
 	$('document').ready(function() {
+		
+		// this function generates a random color
+		function colorGenerator() {
+    		var colors = ['red','purple','green','yellow'];
+    		var randomColor = colors[Math.floor(Math.random() * colors.length)];
+    		return randomColor;
+    	}
 
-		  function colorGenerator() {
-    	var colors = ['red','purple','green','yellow'];
-    	var randomColor = colors[Math.floor(Math.random() * colors.length)];
-    	return randomColor;
-    }
+    	var test = 1;
 
-    var test = 1;
+    	// this is the array where the computer generated color-sequence is stored
+    	var inputArray = [];
 
-    var inputArray = [];
+    	var userArray = [];
 
-    var userArray = [];
-
-    function preCycle () {
-    	var counter1 = 0;
-    	    	var preCycleLoop = setInterval(function() {
- 		counter1++;
- 		cycleArray();
- 		if (counter1 == 1) {
- 			clearInterval(preCycleLoop);
+    	// this function sets a delay to allow users time to read the instructions
+    	function preCycle () {
+    		var counter1 = 0;
+    		var preCycleLoop = setInterval(function() {
+ 				counter1++;
+ 				cycleArray();
+ 				if (counter1 == 1) {
+ 					clearInterval(preCycleLoop);
     	    		$('#instructions').html('Watch the Sequence');
- 		}
+ 				}
 
-    }, 1000);
-    }
+    		}, 1000);
+    	}		
 
-    function cycleArray () {
-    	var counter = 0;
-    	var looper = setInterval(function() {
- 			if (inputArray[counter] == 'red') {
+    	function cycleArray () {
+    		var counter = 0;
+    		var looper = setInterval(function() {
+ 				if (inputArray[counter] == 'red') {
 		  			$('#red')
 		  			.animate({ opacity: "1"}, 200)
 		  			.animate({ opacity: ".3"}, 200);
 		  			document.getElementById("id1").play();
-		  		}
+	  			}
 		  		if (inputArray[counter] == 'purple') {
 		  			$('#purple')
 		  			.animate({ opacity: "1"}, 200)
@@ -111,12 +113,12 @@
 		  		}
 		  		if (counter == inputArray.length) { clearInterval(looper);
 		  			console.log('aborted');
-    	$('#instructions').html('Repeat the Sequence You Just Saw');
+    				$('#instructions').html('Repeat the Sequence You Just Saw');
 		  				counter = 0;
 		  		}
- 		counter++;
-    }, 1000);
-    }
+ 				counter++;
+    		}, 1000);
+    	}
 
 
 
@@ -124,8 +126,7 @@
        function inputColorPush () {
        	inputArray.push(colorGenerator());
 		  		preCycle();
-
-    }
+    	}
 
 var roundCounter = 1;
 
